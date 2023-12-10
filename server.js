@@ -1,4 +1,4 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import router from "./routes/routes.js";
@@ -6,6 +6,9 @@ const app = express();
 
 dotenv.config();
 app.use(express.json());
+
+app.use(urlencoded({ extended: true }));
+
 app.use("/api/products", router);
 
 app.get("/", (req, res) => {
